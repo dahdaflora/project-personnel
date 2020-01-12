@@ -1,0 +1,58 @@
+<div class="mt-4" style = "padding-top: 190px; background-color: gray;">
+  <div class="container">
+    <ng-progress></ng-progress>
+    <div class="row p-2" *ngIf="allCountries">
+      <div class="col-md-6 mt-3">
+        <form class="form-inline mt-2 mt-md-0">
+          <input class="form-control mr-sm-2" mdbInputDirective  #searchBox (keyup)="search(searchBox.value)" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0"  mdbWavesEffect type="submit" (click)="search(searchBox.value) ">Search</button>
+    
+          
+        </form>
+        
+      </div>
+      
+    </div>
+    <div class="row" *ngIf="allCountries">
+      <div class="col-sm-6 col-md-4 col-lg-4" *ngFor="let country of allCountries">
+        <div class="mr-2 mb-2">
+          <div class="card card-cascade narrower hoverable ">
+            <div class="view overlay view-cascade waves-light" mdbWavesEffect>
+              <img class="img-fluid w-100" [src]="country.flag" [alt]="country.name" style="height: 7rem;">
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <div class="card-body card-body-cascade text-center">
+              <h4 class="card-title">
+                <strong>{{country.name}}</strong>
+              </h4>
+              <h6 class="indigo-text">Capital :{{country.capital}}</h6>
+              <div class="card-text">
+                <p>Sub-Region : {{country.subregion}} </p>
+                <p>Timezone : {{country.timezones}} </p>
+              </div>
+              <p>Currencies :</p>
+              <ul class="list-group" *ngFor="let currency of country.currencies">
+                <li *ngIf="currency.name" class="list-group-item d-flex justify-content-between align-items-center">
+                  <a [routerLink]="['/region',country.alpha3Code] " [queryParams]="{currency: currency.code}" class="font-small"> {{currency.name}} ( {{currency.code}} )</a>
+                  <span class="badge badge-info badge-pill" *ngIf="currency.symbol">{{currency.symbol}}</span>
+                </li>
+              </ul>
+              <p *ngIf="country.languages">Languages :
+                <span *ngFor="let language of country.languages; let i = last">
+                  <a [routerLink]="['/region/', country.alpha3Code]" [queryParams]="{ 'language' : language.iso639_1}">{{language.name}} </a>{{i ? "" : ","}} </span>
+              </p>
+            </div>
+
+            <a class="btn btn-secondary btn-sm  waves-light" [routerLink]="['/country',country.alpha3Code]" mdbWavesEffect>en savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-danger waves-light" (click)="goBackToPreviousPage()" mdbWavesEffect>retour</button>
+    </div>
+  </div>
+
+</div>
