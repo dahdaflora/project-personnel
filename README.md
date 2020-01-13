@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Countries Info 🎉
 <p align="center">
   <a href="https://github.com/vivek1996/rest-countries/issues"><img src="https://img.shields.io/github/issues/vivek1996/rest-countries.svg?style=flat-square" alt="GitHub issues"></a>
@@ -82,3 +83,6 @@ and will should the country list which have the same currency (irrespective of t
 - [x] Add Service Worker
 
 For any other features rise an issue .
+=======
+# project-personnel
+>>>>>>> e2fa0e58e9f99a2396a71abba3dca55589c2f673
